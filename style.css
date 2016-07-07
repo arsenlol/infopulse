@@ -1,0 +1,52 @@
+body {margin:0; padding:0; background:url(img/bg.jpg) 0 0/cover no-repeat; font-family:Verdana;text-transform:uppercase;}
+header {padding:30px 50px; background:rgba(255,255,255,.3)}
+h1, h2 { font-weight:normal; font-size:24px; display:inline-block;}
+#min-basket {float:right; margin-right:100px; padding-right:70px; background:url(img/basket.png) 100% 50% no-repeat; cursor:pointer;}
+.main {width: 1245px; margin:0 auto;}
+.search, .sort { display:inline-block; padding: 20px 0;}
+.search input {font-size:20px; height:45px; padding-left:15px; padding-right:65px; width:285px; border: 1px solid transparent;background:rgba(0,0,0,.07) url(img/search.png) -1px -1px; border-radius: 5px;}
+input:focus, select:focus {outline:none;}
+.sort{margin-left:50px; font-size:22px;position:relative;}
+.sort select {background:transparent; border: 1px solid transparent;font-size:22px; text-transform:uppercase; width:120px;}
+.sort:before {content:''; border-top:10px solid #5b5b5b; border-left:10px solid transparent; border-right:10px solid transparent; position:absolute; top: 40%; right: 0px; pointer-events:none;}
+.catalog {background: rgba(100,100,100,.1); height: 870px; box-shadow: 0 0 40px 0 rgba(0,0,0,.5); padding:10px; text-align:center; margin-bottom:50px;}
+.item {background:white; padding:15px; display:inline-block; position:relative; margin:10px; position:relative;}
+.name {font-size:15px; position:absolute; top:-10px; left:15px;}
+.item p {font-size:15px; text-align:center; margin:10px 0 30px;}
+.item-quan {margin:0 20px}
+.more, .less {width:16px;display:inline-block; margin: 0 15px; cursor:pointer;}
+.more {background:url(img/more.png) center no-repeat;}
+.less {background:url(img/less.png) center no-repeat;}
+.price, .add {display:inline-block; font-size:22px}
+.add {float:right; color:#5cba47; font-weight:bold; cursor:pointer;}
+@keyframes fade{
+	0% {opacity:0;}
+	10% {opacity:1;}
+	90% {opacity:1;}
+	100% {opacity:0;}
+}
+.quan-warn {position:absolute; bottom:98px; text-transform:none; border-radius:5px; background-color:#ccc; border:1px solid #555; padding:10px 20px; animation:fade 3s;}
+.quan-warn:before {content:''; border-top:10px solid #555; border-left:8px solid transparent; border-right:8px solid transparent; position:absolute; bottom:-10px; left:108px;}
+#close {cursor:pointer; font-size:14px; font-weight:bold; color:#222; margin:20px 20px 0 0; display:block;}
+#popup-bg {display:none;background:rgba(0,0,0,.5); position:fixed; top:0; left:0; width:100%; height:100%; z-index:10;}
+.popup {width:1245px; height:700px; position:absolute; left:50%; margin-left:-643px; top:85px; background:#fff; box-shadow:0 0 60px 0 rgba(0,0,0,1); text-align:right;}
+.basket-content {background:#eee; padding:20px; text-align:left;}
+.basket-header {font-weight:bold; color:#fff; font-size:18px; background-color:#b3b3b3; line-height:50px; height:50px;}
+#basket{padding:0;list-style:none; overflow:auto;height:500px; padding-right:10px;}
+.pt {width:25%;float:left;}
+.remove {float:right; margin-right:20px; font-size:16px; color:#a30c0c; cursor:pointer;}
+.pt:not(:first-of-type) {text-align:center;}
+.basket-header .pt:first-of-type {text-indent:60px; font-style:italic;}
+.pt:first-of-type {text-indent:20px;}
+#basket li {line-height:80px; height:80px; background:#fff; margin:20px 0;}
+.number {font-size:30px;}
+.b-name {font-size:18px;}
+.b-quan {font-size:30px;font-weight:bold;}
+.b-price {font-size:30px;font-weight:900;color:#12b51d;}
+#buy , .sum  {display:inline-block;font-weight:900; margin-top:40px;}
+#buy {padding:10px 50px; color:#fff; background-color:#12b51d; font-size:30px; cursor:pointer;}
+.sum {float:right; margin-right:40px; font-size:24px;}
+.sum span{color:#12b51d; margin-left:80px; font-size:36px;}
+#success {width:100%; height:718px; background-color: #eee; position:absolute; top:37px; z-index:1; text-align:center; font-size:28px; font-weight:bold; display:none;}
+#success p {display:inline-block; margin:25% auto 10%; width:100%; }
+#complete {background:#5cba47; padding:20px 30px; color:#fff; display:inline-block; cursor:pointer;}
