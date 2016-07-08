@@ -92,103 +92,91 @@ function refreshSum(){
 
 // GET CATALOG DATA AND BUILD CATALOG
 var catalog = JSON.parse(catalogData);
-function buildCatalog(){
+function buildCatalog(catalogArr){
+	var html = '';
+	for (var i = 0; i < catalogArr.length; i++){
+		html += 
+		'<div class="item">'+
+			'<span class="name">' + catalogArr[i].name + '</span>'+
+			'<div class="icon"><img src="img/photo.jpg" alt="icon"></div>'+
+			'<p>quantity<span class="item-quan">0</span><span class="more">&nbsp;</span><span class="less">&nbsp;</span></p>'+
+			'<div class="price">' + catalogArr[i].price + ' $</div><div class="add">buy</div>'+
+		'</div>';
+	}
+	document.querySelector('.catalog').innerHTML = html;
+}
 
-	var samples = [];
-	if(document.querySelector('#search').value.length>1){
-		var searchExp = new RegExp (document.querySelector('#search').value, 'i');
+document.querySelector('#search').addEventListener('keyup',function(){
+	if(this.value.length>1){
+		var searchExp = new RegExp (this.value, 'i');
 		var samples = [];
 		for (var i = 0; i < catalog.length; i++){
 			if(catalog[i].name.search(searchExp) != -1 || catalog[i].price.search(searchExp) != -1){
 				 samples.push(catalog[i]);
-				 console.log(catalog[i]);
 			}
 		}
+		buildCatalog(samples);
 	} else {
-		samples = catalog;
+		buildCatalog(catalog);
 	}
-
-	if (document.querySelector('#sort').value === 'name'){
-		function mySort(a,b){ 
-			if(a.name < b.name) return -1;
-    		if(a.name > b.name) return 1;
-    		return 0;}
-	} else {
-		function mySort(a,b){return a.price-b.price;}
-	}
-	samples.sort(mySort);
-
-	var html = '';
-	for (var i = 0; i < samples.length; i++){
-		html += 
-		'<div class="item">'+
-			'<span class="name">' + samples[i].name + '</span>'+
-			'<div class="icon"><img src="img/photo.jpg" alt="icon"></div>'+
-			'<p>quantity<span class="item-quan">0</span><span class="more">&nbsp;</span><span class="less">&nbsp;</span></p>'+
-			'<div class="price">' + samples[i].price + ' $</div><div class="add">buy</div>'+
-		'</div>';
-	}
-	document.querySelector('.catalog').innerHTML = html;
-	handleEvents();
-}
-buildCatalog();
-
-// HANDLE EVENTS ON GENERATED ELEMENTS
-function handleEvents(){
-	for (var i = 0; i < item.length; i++){
-		var addButton = item[i].querySelector('.add'),
-		name = item[i].querySelector('.name'),
-		plus = item[i].querySelector('.more'),
-		minus = item[i].querySelector('.less');
-		addButton.addEventListener('click', function(){
-			if(parseInt(this.parentNode.querySelector('.item-quan').innerText) < 1){
-				var warn = document.createElement('div'),
-				parent = this.parentNode;
-				warn.className = 'quan-warn';
-				warn.innerText = 'Set the quantity of item plz'
-				console.log(parent)
-				this.parentNode.appendChild(warn);
-				setTimeout(function(){
-					parent.removeChild(parent.lastChild)
-				},3000);
-			} else {
-			addToBasket(this);
-			openBasket();
-			}
-		});
-		plus.addEventListener('click', function(){
-			var quantity = this.parentNode.querySelector('.item-quan').innerText;
-			this.parentNode.querySelector('.item-quan').innerText = parseInt(quantity)+1;
-		});
-		minus.addEventListener('click', function(){
-			var quantity = this.parentNode.querySelector('.item-quan').innerText;
-			this.parentNode.querySelector('.item-quan').innerText = parseInt(quantity)-1;
-			if (parseInt(this.parentNode.querySelector('.item-quan').innerText)<1){
-				this.parentNode.querySelector('.item-quan').innerText = '0'
-			}
-		});
-	}
-}
-
-// HANDLE EVENTS ON STATIC ELEMENTS
-document.querySelector('#search').addEventListener('keyup',function(){
-	buildCatalog();
 });
+
 document.querySelector('#sort').addEventListener('change',function(){
-	buildCatalog();
+	if(document.querySelector('#search').value.length>1){
+		if()function mySort(a,b){return a.price-b.price;}
+		samples.sort(mySort);
+		buildCatalog(samples);
+	}
 });
+
+// HANDLE EVENTS
+buildCatalog(catalog);
+
 minBasket.addEventListener('click',openBasket);
 buy.addEventListener('click',function(){
 		success.style.display = "block";
 		while (arr.length>0){arr.pop()}
 		refreshSum();
 	});
-
 popup.addEventListener('click',function(event){
 		if(event.target === popup || event.target === document.getElementById('close') || event.target === document.getElementById('complete'))
 		{popup.style.display = "none";
 		success.style.display = "none";}
 	});
+
+for (var i = 0; i < item.length; i++){
+	var addButton = item[i].querySelector('.add'),
+	name = item[i].querySelector('.name'),
+	plus = item[i].querySelector('.more'),
+	minus = item[i].querySelector('.less');
+	addButton.addEventListener('click', function(){
+		if(parseInt(this.parentNode.querySelector('.item-quan').innerText) < 1){
+			var warn = document.createElement('div'),
+			parent = this.parentNode;
+			warn.className = 'quan-warn';
+			warn.innerText = 'Set the quantity of item plz'
+			console.log(parent)
+			this.parentNode.appendChild(warn);
+			setTimeout(function(){
+				parent.removeChild(parent.lastChild)
+			},3000);
+		} else {
+		addToBasket(this);
+		openBasket();
+		}
+	});
+	plus.addEventListener('click', function(){
+		var quantity = this.parentNode.querySelector('.item-quan').innerText;
+		this.parentNode.querySelector('.item-quan').innerText = parseInt(quantity)+1;
+	});
+	minus.addEventListener('click', function(){
+		var quantity = this.parentNode.querySelector('.item-quan').innerText;
+		this.parentNode.querySelector('.item-quan').innerText = parseInt(quantity)-1;
+		if (parseInt(this.parentNode.querySelector('.item-quan').innerText)<1){
+			this.parentNode.querySelector('.item-quan').innerText = '0'
+		}
+	});
+}
 
 
 // function fetchJSONFile(path, callback) {
