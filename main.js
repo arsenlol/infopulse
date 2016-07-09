@@ -148,6 +148,33 @@ function buildCatalog(array){
 	handleEvents();
 }
 
+// ONLOAD
+fetchJSONFile('data.json', function(data){
+	buildCatalog(data);
+	filter.addEventListener('keyup',function(){
+		buildCatalog(data);
+	});
+	select.addEventListener('change',function(){
+		buildCatalog(data);
+	});
+	complete.addEventListener('click',function(){
+		buildCatalog(data);
+	});
+});
+
+// HANDLE EVENTS ON STATIC ELEMENTS
+minBasket.addEventListener('click',openBasket);
+buy.addEventListener('click',function(){
+		success.style.display = "block";
+		while (arr.length>0){arr.pop()}
+		refreshSum();
+	});
+popup.addEventListener('click',function(event){
+		if(event.target === popup || event.target === closePopup || event.target === complete)
+		{popup.style.display = "none";
+		success.style.display = "none";}
+	});
+
 // HANDLE EVENTS ON GENERATED ELEMENTS
 function handleEvents(){
 	for (var i = 0; i < item.length; i++){
@@ -183,34 +210,3 @@ function handleEvents(){
 		});
 	}
 }
-
-// ONLOAD
-fetchJSONFile('data.json', function(data){
-	buildCatalog(data);
-	filter.addEventListener('keyup',function(){
-		buildCatalog(data);
-	});
-	select.addEventListener('change',function(){
-		buildCatalog(data);
-	});
-	complete.addEventListener('click',function(){
-		buildCatalog(data);
-	});
-});
-
-// HANDLE EVENTS ON STATIC ELEMENTS
-
-minBasket.addEventListener('click',openBasket);
-buy.addEventListener('click',function(){
-		success.style.display = "block";
-		while (arr.length>0){arr.pop()}
-		refreshSum();
-	});
-
-popup.addEventListener('click',function(event){
-		if(event.target === popup || event.target === closePopup || event.target === complete)
-		{popup.style.display = "none";
-		success.style.display = "none";}
-	});
-
-
