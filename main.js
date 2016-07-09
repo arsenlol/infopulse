@@ -102,8 +102,12 @@ function fetchJSONFile(path, callback) {
             if (httpRequest.status === 200) {
                 var data = JSON.parse(httpRequest.responseText);
                 if (callback) callback(data);
-            }
-        }
+            } else {
+				setTimeout(function(){
+					alert('XMLHttpRequest cannot load DATA.json to display catalog items. Please run the site by suppoted protocol schemes or visit https://arsenlol.github.io/infopulse/')
+				},3000);
+        	}
+        } 
     };
     httpRequest.open('GET', path);
     httpRequest.send(); 
