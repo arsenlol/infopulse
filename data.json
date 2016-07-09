@@ -1,26 +1,26 @@
-catalogData = '['+
-	'{"name" : "Alpha",	"price" : "100000"},'+
-	'{"name" : "Beta",	"price" : "240000"},'+
-	'{"name" : "Gamma",	"price" : "33000"},'+
-	'{"name" : "Delta",	"price" : "45300"},'+
-	'{"name" : "Epsilon",	"price" : "55000"},'+
-	'{"name" : "Zeta",	"price" : "12040"},'+
-	'{"name" : "Eta",	"price" : "230002"},'+
-	'{"name" : "Theta",	"price" : "1100"},'+
-	'{"name" : "Iota",	"price" : "90"},'+
-	'{"name" : "Kappa",	"price" : "10060"},'+
-	'{"name" : "Lambda",	"price" : "109560"},'+
-	'{"name" : "Mu",	"price" : "12400"},'+
-	'{"name" : "Nu",	"price" : "35300"},'+
-	'{"name" : "Xi",	"price" : "53000"},'+
-	'{"name" : "Omicron",	"price" : "11000"},'+
-	'{"name" : "Pi",	"price" : "16040"},'+
-	'{"name" : "Rho",	"price" : "17500"},'+
-	'{"name" : "Sigma",	"price" : "80440"},'+
-	'{"name" : "Tau",	"price" : "41000"},'+
-	'{"name" : "Upsilon",	"price" : "26040"},'+
-	'{"name" : "Phi",	"price" : "15050"},'+
-	'{"name" : "Chi",	"price" : "22000"},'+
-	'{"name" : "Psi",	"price" : "82300"},'+
-	'{"name" : "Omega",	"price" : "24000"}'+
-']';
+[
+	{"name" : "Alpha",	"price" : "100000"},
+	{"name" : "Beta",	"price" : "240000"},
+	{"name" : "Gamma",	"price" : "33000"},
+	{"name" : "Delta",	"price" : "45300"},
+	{"name" : "Epsilon",	"price" : "55000"},
+	{"name" : "Zeta",	"price" : "12040"},
+	{"name" : "Eta",	"price" : "230002"},
+	{"name" : "Theta",	"price" : "1100"},
+	{"name" : "Iota",	"price" : "90"},
+	{"name" : "Kappa",	"price" : "10060"},
+	{"name" : "Lambda",	"price" : "109560"},
+	{"name" : "Mu",	"price" : "12400"},
+	{"name" : "Nu",	"price" : "35300"},
+	{"name" : "Xi",	"price" : "53000"},
+	{"name" : "Omicron",	"price" : "11000"},
+	{"name" : "Pi",	"price" : "16040"},
+	{"name" : "Rho",	"price" : "17500"},
+	{"name" : "Sigma",	"price" : "80440"},
+	{"name" : "Tau",	"price" : "41000"},
+	{"name" : "Upsilon",	"price" : "26040"},
+	{"name" : "Phi",	"price" : "15050"},
+	{"name" : "Chi",	"price" : "22000"},
+	{"name" : "Psi",	"price" : "82300"},
+	{"name" : "Omega",	"price" : "24000"}
+];
