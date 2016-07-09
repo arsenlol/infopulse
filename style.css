@@ -3,13 +3,13 @@ header {padding:30px 50px; background:rgba(255,255,255,.3)}
 h1, h2 { font-weight:normal; font-size:24px; display:inline-block;}
 #min-basket {float:right; margin-right:100px; padding-right:70px; background:url(img/basket.png) 100% 50% no-repeat; cursor:pointer;}
 .main {width: 1245px; margin:0 auto;}
-.search, .sort { display:inline-block; padding: 20px 0;}
+.search, .sort-box { display:inline-block; padding: 20px 0;}
 .search input {font-size:20px; height:45px; padding-left:15px; padding-right:65px; width:285px; border: 1px solid transparent;background:rgba(0,0,0,.07) url(img/search.png) -1px -1px; border-radius: 5px;}
 input:focus, select:focus {outline:none;}
-.sort{margin-left:50px; font-size:22px;position:relative;}
-.sort select {background:transparent; border: 1px solid transparent;font-size:22px; text-transform:uppercase; width:120px;}
-.sort:before {content:''; border-top:10px solid #5b5b5b; border-left:10px solid transparent; border-right:10px solid transparent; position:absolute; top: 40%; right: 0px; pointer-events:none;}
-.catalog {background: rgba(100,100,100,.1); height: 870px; box-shadow: 0 0 40px 0 rgba(0,0,0,.5); padding:10px; text-align:center; margin-bottom:50px;}
+.sort-box {margin-left:50px; font-size:22px;position:relative;}
+#sort {background:transparent; border: 1px solid transparent;font-size:22px; text-transform:uppercase; width:120px;}
+.sort-box:before {content:''; border-top:10px solid #5b5b5b; border-left:10px solid transparent; border-right:10px solid transparent; position:absolute; top: 40%; right: 0px; pointer-events:none;}
+.catalog {background: rgba(100,100,100,.1); box-shadow: 0 0 40px 0 rgba(0,0,0,.5); padding:10px; margin-bottom:50px;}
 .item {background:white; padding:15px; display:inline-block; position:relative; margin:10px; position:relative;}
 .name {font-size:15px; position:absolute; top:-10px; left:15px;}
 .item p {font-size:15px; text-align:center; margin:10px 0 30px;}
