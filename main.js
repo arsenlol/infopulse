@@ -5,6 +5,10 @@ popup = document.querySelector('#popup-bg'),
 buy = document.querySelector('#buy'),
 success = document.querySelector('#success'),
 remove = document.getElementsByClassName('remove'),
+closePopup = document.getElementById('close'),
+complete = document.getElementById('complete'),
+select = document.querySelector('#sort'),
+filter = document.querySelector('#search'),
 item = document.getElementsByClassName('item');
 
 // LOAD LAYOUT FROM BASKET MODEL
@@ -90,7 +94,7 @@ function refreshSum(){
 	document.querySelector('.sum span').innerText = sum;
 }
 
-// GET CATALOG DATA AND BUILD CATALOG
+// GET CATALOG DATA
 function fetchJSONFile(path, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
@@ -105,28 +109,22 @@ function fetchJSONFile(path, callback) {
     httpRequest.send(); 
 }
 
-var catalog;
-fetchJSONFile('data.json', function(data){
-    catalog = JSON.parse(data);
-});
-
-function buildCatalog(){
-
-	var samples = [];
-	if(document.querySelector('#search').value.length>1){
-		var searchExp = new RegExp (document.querySelector('#search').value, 'i');
-		var samples = [];
+// BUILD CATALOG
+function buildCatalog(array){
+	var catalog = array,
+	samples = [];
+	if(filter.value.length>1){
+		var searchExp = new RegExp (filter.value, 'i');
 		for (var i = 0; i < catalog.length; i++){
 			if(catalog[i].name.search(searchExp) != -1 || catalog[i].price.search(searchExp) != -1){
 				 samples.push(catalog[i]);
-				 console.log(catalog[i]);
 			}
 		}
 	} else {
 		samples = catalog;
 	}
 
-	if (document.querySelector('#sort').value === 'name'){
+	if (select.value === 'name'){
 		function mySort(a,b){ 
 			if(a.name < b.name) return -1;
     		if(a.name > b.name) return 1;
@@ -143,13 +141,12 @@ function buildCatalog(){
 			'<span class="name">' + samples[i].name + '</span>'+
 			'<div class="icon"><img src="img/photo.jpg" alt="icon"></div>'+
 			'<p>quantity<span class="item-quan">0</span><span class="more">&nbsp;</span><span class="less">&nbsp;</span></p>'+
-			'<div class="price">' + samples[i].price + ' $</div><div class="add">buy</div>'+
+			'<div class="price">' + samples[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' $</div><div class="add">buy</div>'+
 		'</div>';
 	}
 	document.querySelector('.catalog').innerHTML = html;
 	handleEvents();
 }
-buildCatalog();
 
 // HANDLE EVENTS ON GENERATED ELEMENTS
 function handleEvents(){
@@ -163,8 +160,7 @@ function handleEvents(){
 				var warn = document.createElement('div'),
 				parent = this.parentNode;
 				warn.className = 'quan-warn';
-				warn.innerText = 'Set the quantity of item plz'
-				console.log(parent)
+				warn.innerText = 'Set the quantity of item plz';
 				this.parentNode.appendChild(warn);
 				setTimeout(function(){
 					parent.removeChild(parent.lastChild)
@@ -188,13 +184,22 @@ function handleEvents(){
 	}
 }
 
+// ONLOAD
+fetchJSONFile('data.json', function(data){
+	buildCatalog(data);
+	filter.addEventListener('keyup',function(){
+		buildCatalog(data);
+	});
+	select.addEventListener('change',function(){
+		buildCatalog(data);
+	});
+	complete.addEventListener('click',function(){
+		buildCatalog(data);
+	});
+});
+
 // HANDLE EVENTS ON STATIC ELEMENTS
-document.querySelector('#search').addEventListener('keyup',function(){
-	buildCatalog();
-});
-document.querySelector('#sort').addEventListener('change',function(){
-	buildCatalog();
-});
+
 minBasket.addEventListener('click',openBasket);
 buy.addEventListener('click',function(){
 		success.style.display = "block";
@@ -203,7 +208,7 @@ buy.addEventListener('click',function(){
 	});
 
 popup.addEventListener('click',function(event){
-		if(event.target === popup || event.target === document.getElementById('close') || event.target === document.getElementById('complete'))
+		if(event.target === popup || event.target === closePopup || event.target === complete)
 		{popup.style.display = "none";
 		success.style.display = "none";}
 	});
